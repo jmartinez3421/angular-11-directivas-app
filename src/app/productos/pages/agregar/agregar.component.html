@@ -1,0 +1,43 @@
+<h1>Agregar Producto</h1>
+<hr>
+
+<form [formGroup]="miFormulario">
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-auto">
+            <label class="col-form-label">Nombre:</label>
+        </div>
+        <div class="col-auto">
+            <input class="form-control" placeholder="Introducir nombre..." formControlName='nombre'>
+        </div>
+        <div class="col-auto">
+            <span errorMsg [msg]='msg' [color]="color" [valido]="!tieneError('nombre')"></span>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-auto">
+            <button class="btn btn-primary" type="button" (click)="generateName()">
+                Guardar
+            </button>
+            <button class="btn btn-primary ms-2" type="button" (click)="cambiarColor()">
+                Cambiar Color
+            </button>
+        </div>
+    </div>
+</form>
+
+<h3 class="mt-5" errorMsg color="purple">Formulario</h3>
+<hr>
+
+<h5>Valid: <small>{{miFormulario.valid}}</small></h5>
+
+<h5>Valor formulario: </h5>
+<pre>{{miFormulario.value | json}}</pre>
+
+<div class="row mt-5" *CustomIf='!miFormulario.get("nombre")?.invalid'>
+    <div class="col">
+        <div class="alert alert-primary">
+            Todo OK!
+        </div>
+    </div>
+</div>
